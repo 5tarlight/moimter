@@ -3,6 +3,7 @@
 import { useState } from "react";
 import HomeHeader from "../components/index/header";
 import cn from "@yeahx4/cn";
+import ContentWrapper from "../components/common/content-wrapper";
 
 const themes = {
   cute: {
@@ -32,8 +33,17 @@ export default function Home() {
   return (
     <>
       <HomeHeader theme={themes[activeTheme]} />
-      <main className={cn("min-h-screen", themes[activeTheme].bg)}>
-        <h1>Hello World</h1>
+      <main
+        className={cn(
+          "min-h-screen flex flex-col items-center",
+          themes[activeTheme].bg
+        )}
+      >
+        <ContentWrapper className="pt-32">
+          <section className="flex flex-col items-center gap-4 text-center">
+            <span className="mt-128">완전히 새로운 커뮤니티 경험</span>
+          </section>
+        </ContentWrapper>
       </main>
     </>
   );
