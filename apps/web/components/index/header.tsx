@@ -13,12 +13,17 @@ export default function HomeHeader({ theme }: { theme: HomeTheme }) {
         "flex items-center justify-center h-18"
       )}
     >
-      <ContentWrapper className="flex items-center justify-between">
-        <div>
+      <ContentWrapper
+        className={cn(
+          "grid grid-cols-2 md:grid-cols-3 items-center px-4 sm:px-6",
+          "lg:px-8 w-full"
+        )}
+      >
+        <div className="justify-self-start">
           <HeaderLogo theme={theme} />
         </div>
 
-        <div className="hidden md:flex flex-1 justify-center items-center gap-8">
+        <div className="justify-self-center hidden md:flex items-center gap-8">
           <Link
             href="#features"
             className="text-gray-600 hover:text-gray-900 transition-colors"
@@ -39,7 +44,7 @@ export default function HomeHeader({ theme }: { theme: HomeTheme }) {
           </Link>
         </div>
 
-        <div>
+        <div className="justify-self-end">
           <div className="text-sm text-gray-600 hover:text-gray-900 cursor-pointer">
             Login
           </div>

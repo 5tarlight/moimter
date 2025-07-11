@@ -4,7 +4,7 @@ import { Sparkles } from "lucide-react";
 
 export default function HeaderLogo({ theme }: { theme: HomeTheme }) {
   return (
-    <div className={cn("flex items-center gap-2")}>
+    <div className={cn("ml-4 flex items-center gap-2")}>
       <div
         className={cn(
           "w-10 h-10 bg-gradient-to-r rounded-2xl",
