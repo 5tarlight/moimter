@@ -6,7 +6,7 @@ import cn from "@yeahx4/cn";
 export default function InfiniteCustom() {
   return (
     <div id="customize">
-      <div className="flex flex-col items-center gap-4 mb-16">
+      <div className="flex flex-col items-center gap-4 mb-16 mt-16">
         <div className="text-3xl sm:text-4xl font-bold text-center">
           무한한 커스터마이징의 세계
         </div>
