@@ -4,10 +4,10 @@ import { useState } from "react";
 import HomeHeader from "../components/index/header";
 import cn from "@yeahx4/cn";
 import ContentWrapper from "../components/common/content-wrapper";
-import { Brush, Camera, Heart, Layout, Smile, Star } from "lucide-react";
 import MainTitle from "../components/index/main-title";
 import LandingThemeSwitcher from "../components/index/landing-theme-switcher";
 import LayoutPreview from "../components/index/layout-preview";
+import InfiniteCustom from "../components/index/infinite-custom";
 
 const themes = {
   cute: {
@@ -53,6 +53,12 @@ export default function Home() {
             />
             <LayoutPreview theme={themes[activeTheme]} />
           </section>
+
+          <section>
+            <InfiniteCustom />
+          </section>
+
+          <div className="h-64"></div>
         </ContentWrapper>
       </main>
     </>
