@@ -8,6 +8,7 @@ import MainTitle from "../components/index/main-title";
 import LandingThemeSwitcher from "../components/index/landing-theme-switcher";
 import LayoutPreview from "../components/index/layout-preview";
 import InfiniteCustom from "../components/index/infinite-custom";
+import StartNow from "../components/index/start-now";
 
 const themes = {
   cute: {
@@ -57,9 +58,9 @@ export default function Home() {
           <section>
             <InfiniteCustom />
           </section>
-
-          <div className="h-64"></div>
         </ContentWrapper>
+
+        <StartNow theme={themes[activeTheme]} />
       </main>
     </>
   );
