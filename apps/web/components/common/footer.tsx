@@ -2,7 +2,7 @@ import Link from "next/link";
 import HeaderLogo from "../index/header-logo";
 import ContentWrapper from "./content-wrapper";
 import FooterMenuContainer from "./footer/menu-container";
-import { Instagram, Twitter, X, Youtube } from "lucide-react";
+import { Instagram, Twitter, Youtube } from "lucide-react";
 import FooterMenuTitle from "./footer/menu-title";
 import FooterMenuItem from "./footer/menu-item";
 
