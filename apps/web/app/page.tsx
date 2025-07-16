@@ -1,102 +1,67 @@
-import Image, { type ImageProps } from "next/image";
-import { Button } from "@repo/ui/button";
-import styles from "./page.module.css";
+"use client";
 
-type Props = Omit<ImageProps, "src"> & {
-  srcLight: string;
-  srcDark: string;
-};
+import { useState } from "react";
+import HomeHeader from "../components/index/header";
+import cn from "@yeahx4/cn";
+import ContentWrapper from "../components/common/content-wrapper";
+import MainTitle from "../components/index/main-title";
+import LandingThemeSwitcher from "../components/index/landing-theme-switcher";
+import LayoutPreview from "../components/index/layout-preview";
+import InfiniteCustom from "../components/index/infinite-custom";
+import StartNow from "../components/index/start-now";
 
-const ThemeImage = (props: Props) => {
-  const { srcLight, srcDark, ...rest } = props;
+const themes = {
+  cute: {
+    bg: "bg-gradient-to-br from-pink-50 to-purple-50",
+    accent: "from-pink-400 to-purple-500",
+    card: "border-pink-200 bg-white/80",
+  },
+  modern: {
+    bg: "bg-gradient-to-br from-blue-50 to-indigo-50",
+    accent: "from-blue-500 to-indigo-600",
+    card: "border-blue-200 bg-white/80",
+  },
+  nature: {
+    bg: "bg-gradient-to-br from-green-50 to-emerald-50",
+    accent: "from-green-500 to-emerald-600",
+    card: "border-green-200 bg-white/80",
+  },
+} as const;
+
+export type HomeThemeType = keyof typeof themes;
+export type HomeTheme = (typeof themes)[HomeThemeType];
+export type HomeThemes = typeof themes;
+
+export default function Home() {
+  const [activeTheme, setActiveTheme] = useState<HomeThemeType>("cute");
 
   return (
     <>
-      <Image {...rest} src={srcLight} className="imgLight" />
-      <Image {...rest} src={srcDark} className="imgDark" />
-    </>
-  );
-};
-
-export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <ThemeImage
-          className={styles.logo}
-          srcLight="turborepo-dark.svg"
-          srcDark="turborepo-light.svg"
-          alt="Turborepo logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>apps/web/app/page.tsx</code>
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new/clone?demo-description=Learn+to+implement+a+monorepo+with+a+two+Next.js+sites+that+has+installed+three+local+packages.&demo-image=%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F4K8ZISWAzJ8X1504ca0zmC%2F0b21a1c6246add355e55816278ef54bc%2FBasic.png&demo-title=Monorepo+with+Turborepo&demo-url=https%3A%2F%2Fexamples-basic-web.vercel.sh%2F&from=templates&project-name=Monorepo+with+Turborepo&repository-name=monorepo-turborepo&repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fturborepo%2Ftree%2Fmain%2Fexamples%2Fbasic&root-directory=apps%2Fdocs&skippable-integrations=1&teamSlug=vercel&utm_source=create-turbo"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+      <HomeHeader theme={themes[activeTheme]} />
+      <main
+        className={cn(
+          "min-h-screen flex flex-col items-center",
+          themes[activeTheme].bg
+        )}
+      >
+        <ContentWrapper className="pt-32">
+          <section className="flex flex-col items-center gap-4 text-center">
+            <MainTitle theme={themes[activeTheme]} />
+            <LandingThemeSwitcher
+              setTheme={setActiveTheme}
+              themes={themes}
+              theme={activeTheme}
             />
-            Deploy now
-          </a>
-          <a
-            href="https://turborepo.com/docs?utm_source"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-        <Button appName="web" className={styles.secondary}>
-          Open alert
-        </Button>
+            <LayoutPreview theme={themes[activeTheme]} />
+          </section>
+
+          <section>
+            <InfiniteCustom />
+          </section>
+        </ContentWrapper>
+
+        <StartNow theme={themes[activeTheme]} />
       </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com/templates?search=turborepo&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://turborepo.com?utm_source=create-turbo"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to turborepo.com →
-        </a>
-      </footer>
-    </div>
+    </>
   );
 }
