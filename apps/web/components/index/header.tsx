@@ -44,10 +44,18 @@ export default function HomeHeader({ theme }: { theme: HomeTheme }) {
           </Link>
         </div>
 
-        <div className="justify-self-end">
-          <div className="text-sm text-gray-600 hover:text-gray-900 cursor-pointer">
-            Login
-          </div>
+        <div className="justify-self-end flex gap-4">
+          <Link
+            href="/login"
+            className={cn(
+              "text-sm cursor-pointer",
+              "px-4 py-2 rounded-md transition-colors",
+              theme.accent,
+              "bg-gradient-to-r text-white"
+            )}
+          >
+            시작하기
+          </Link>
         </div>
       </ContentWrapper>
     </header>
