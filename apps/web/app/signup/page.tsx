@@ -10,6 +10,8 @@ import OAuth from "../../components/auth/oauth";
 import { useState } from "react";
 import AuthFieldItem from "../../components/auth/auth-field-item";
 import { CiAt, CiLock, CiMail, CiUser } from "react-icons/ci";
+import AgreementItem from "../../components/auth/agree-field";
+import Link from "next/link";
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
@@ -22,6 +24,12 @@ export default function SignUp() {
   const [identifierError, setIdentifierError] = useState("");
   const [username, setUsername] = useState("");
   const [usernameError, setUsernameError] = useState("");
+  const [agreeTerms, setAgreeTerms] = useState(false);
+  const [agreeTermsError, setAgreeTermsError] = useState(false);
+  const [agreePrivacy, setAgreePrivacy] = useState(false);
+  const [agreePrivacyError, setAgreePrivacyError] = useState(false);
+  const [agreeMarketing, setAgreeMarketing] = useState(false);
+  const [agreeMarketingError, setAgreeMarketingError] = useState(false);
 
   const handleSignUp = () => {};
 
@@ -93,6 +101,51 @@ export default function SignUp() {
           error={usernameError}
           isRequired
         />
+
+        <div className="flex flex-col gap-2 w-full">
+          <AgreementItem
+            label={
+              <span>
+                <Link
+                  href="/terms"
+                  className="text-purple-600 hover:underline"
+                  target="_blank"
+                >
+                  이용약관
+                </Link>
+                에 동의합니다.
+              </span>
+            }
+            required
+            checked={agreeTerms}
+            onChange={() => setAgreeTerms(!agreeTerms)}
+            error={agreeTermsError}
+          />
+          <AgreementItem
+            label={
+              <span>
+                <Link
+                  href="/privacy"
+                  target="_blank"
+                  className="text-purple-600 hover:underline"
+                >
+                  개인정보 처리방침
+                </Link>
+                에 동의합니다.
+              </span>
+            }
+            required
+            checked={agreePrivacy}
+            onChange={() => setAgreePrivacy(!agreePrivacy)}
+            error={agreePrivacyError}
+          />
+          <AgreementItem
+            label={<span>마케팅 정보 수신에 동의합니다. (선택)</span>}
+            checked={agreeMarketing}
+            onChange={() => setAgreeMarketing(!agreeMarketing)}
+            error={agreeMarketingError}
+          />
+        </div>
       </AuthForm>
     </AuthContainer>
   );
