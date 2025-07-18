@@ -5,6 +5,7 @@ import AuthTitle from "../../components/auth/auth-title";
 import AuthGoToHome from "../../components/auth/go-to-home";
 import AuthDescription from "../../components/auth/auth-description";
 import AuthForm from "../../components/auth/auth-form";
+import OAuth from "../../components/auth/oauth";
 
 export default function SignUp() {
   const handleSignUp = () => {};
@@ -19,6 +20,8 @@ export default function SignUp() {
       <AuthForm onSubmit={handleSignUp}>
         <AuthTitle>회원가입</AuthTitle>
         <AuthDescription>Moimter 계정을 생성합니다.</AuthDescription>
+
+        <OAuth types={["google", "naver", "github"]} />
       </AuthForm>
     </AuthContainer>
   );
