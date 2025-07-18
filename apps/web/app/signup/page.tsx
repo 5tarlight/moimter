@@ -12,6 +12,7 @@ import AuthFieldItem from "../../components/auth/auth-field-item";
 import { CiAt, CiLock, CiMail, CiUser } from "react-icons/ci";
 import AgreementItem from "../../components/auth/agree-field";
 import Link from "next/link";
+import AuthSubmit from "../../components/auth/submit-btn";
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
@@ -146,6 +147,15 @@ export default function SignUp() {
             error={agreeMarketingError}
           />
         </div>
+
+        <AuthSubmit>계정 만들기</AuthSubmit>
+
+        <p className="text-sm text-gray-500 mt-4">
+          이미 계정이 있으신가요?{" "}
+          <Link href="/login" className="text-purple-600 hover:underline">
+            로그인하기
+          </Link>
+        </p>
       </AuthForm>
     </AuthContainer>
   );
