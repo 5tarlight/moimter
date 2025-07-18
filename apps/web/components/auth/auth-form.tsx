@@ -13,7 +13,7 @@ export default function AuthForm({
       onSubmit={onSubmit}
       className={cn(
         "bg-white p-6 rounded-md shadow-lg mt-8 flex flex-col",
-        "items-center w-96"
+        "items-center max-w-96 w-full"
       )}
     >
       {children}

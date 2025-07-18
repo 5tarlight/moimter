@@ -49,7 +49,7 @@ export default function OAuth({ types }: { types: OAuthType[] }) {
   }
 
   return (
-    <div className="flex gap-4 my-4">
+    <div className="flex gap-4 mt-4">
       {types.map((type, i) => {
         return (
           <button
