@@ -1,6 +1,7 @@
 import { ArrowRight, Palette, Play } from "lucide-react";
 import { HomeTheme } from "../../app/page";
 import cn from "@yeahx4/cn";
+import Link from "next/link";
 
 export default function MainTitle({ theme }: { theme: HomeTheme }) {
   return (
@@ -38,7 +39,8 @@ export default function MainTitle({ theme }: { theme: HomeTheme }) {
       <div
         className={cn("flex flex-col sm:flex-row gap-4 justify-center mb-12")}
       >
-        <button
+        <Link
+          href="/signup"
           className={cn(
             `text-lg px-8 py-2 bg-gradient-to-r`,
             theme.accent,
@@ -50,8 +52,9 @@ export default function MainTitle({ theme }: { theme: HomeTheme }) {
           <Palette className="mr-2 w-5 h-5" />
           무료로 꾸미기 시작
           <ArrowRight className="ml-2 w-5 h-5" />
-        </button>
-        <button
+        </Link>
+        <Link
+          href="/explore"
           className={cn(
             "text-lg px-8 py-2 bg-white/50 backdrop-blur-sm",
             "flex items-center justify-center gap-2 rounded-md",
@@ -61,7 +64,7 @@ export default function MainTitle({ theme }: { theme: HomeTheme }) {
         >
           <Play className="mr-2 w-4 h-4" />
           모임 찾아보기
-        </button>
+        </Link>
       </div>
     </>
   );

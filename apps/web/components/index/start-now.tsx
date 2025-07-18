@@ -1,6 +1,7 @@
 import cn from "@yeahx4/cn";
 import { HomeTheme } from "../../app/page";
 import { ArrowRight, Sparkles } from "lucide-react";
+import Link from "next/link";
 
 export default function StartNow({ theme }: { theme: HomeTheme }) {
   return (
@@ -20,7 +21,8 @@ export default function StartNow({ theme }: { theme: HomeTheme }) {
         만들어가세요.
       </div>
       <div className="flex mt-4 gap-8 justify-center">
-        <button
+        <Link
+          href="/signup"
           className={cn(
             "flex justify-center bg-white hover:bg-gray-100",
             "px-8 py-2 rounded-sm items-center gap-2 cursor-pointer",
@@ -30,8 +32,9 @@ export default function StartNow({ theme }: { theme: HomeTheme }) {
           <Sparkles className="mr-2 w-5 h-5" />
           <span>무료로 시작하기</span>
           <ArrowRight className="ml-2 w-5 h-5" />
-        </button>
-        <button
+        </Link>
+        <Link
+          href="/features"
           className={cn(
             "border-1 border-white rounded-sm px-8 py-2 text-lg",
             "hover:bg-white hover:text-gray-900 transition-all",
@@ -39,7 +42,7 @@ export default function StartNow({ theme }: { theme: HomeTheme }) {
           )}
         >
           더 많은 기능 보기
-        </button>
+        </Link>
       </div>
       <div className="text-sm text-white/80 mt-2">
         회원가입 무료 • 기본 꾸미기 무료 • 언제든 업그레이드 가능
