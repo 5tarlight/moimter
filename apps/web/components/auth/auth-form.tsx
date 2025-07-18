@@ -1,16 +1,19 @@
 import cn from "@yeahx4/cn";
-import { ReactNode } from "react";
+import { FormEvent, ReactNode } from "react";
 
 export default function AuthForm({
   onSubmit,
   children,
 }: {
-  onSubmit: () => any;
+  onSubmit: (e: FormEvent<HTMLFormElement>) => any;
   children?: ReactNode;
 }) {
   return (
     <form
-      onSubmit={onSubmit}
+      onSubmit={(e) => {
+        e.preventDefault();
+        onSubmit(e);
+      }}
       className={cn(
         "bg-white p-6 rounded-md shadow-lg mt-8 flex flex-col",
         "items-center max-w-96 w-full mb-32"

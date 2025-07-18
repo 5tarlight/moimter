@@ -1,5 +1,6 @@
 "use client";
 
+import cn from "@yeahx4/cn";
 import { Eye, EyeOff } from "lucide-react";
 import { ChangeEvent, useState } from "react";
 
@@ -44,9 +45,10 @@ export default function AuthFieldItem({
         )}
       </div>
       <div
-        className={`flex items-center border rounded-md px-3 py-2 focus-within:ring-2 ${
+        className={cn(
+          "flex items-center border rounded-md px-3 py-2 focus-within:ring-2",
           error ? "border-red-500" : "border-gray-300"
-        }`}
+        )}
       >
         {icon && <div className="mr-2 text-gray-500">{icon}</div>}
         <input

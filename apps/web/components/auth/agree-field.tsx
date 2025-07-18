@@ -1,3 +1,5 @@
+import cn from "@yeahx4/cn";
+
 type AgreementItemProps = {
   label: React.ReactNode;
   required?: boolean;
@@ -19,7 +21,10 @@ export default function AgreementItem({
         type="checkbox"
         checked={checked}
         onChange={onChange}
-        className="w-4 h-4 border-gray-300 rounded outline-none accent-black"
+        className={cn(
+          "w-4 h-4 border-gray-300 rounded outline-none accent-black",
+          "focus:ring-2 focus:ring-purple-500"
+        )}
       />
       <div className={error ? "text-red-500" : "text-gray-700"}>
         {label}

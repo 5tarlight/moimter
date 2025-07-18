@@ -50,10 +50,10 @@ export default function OAuth({ types }: { types: OAuthType[] }) {
 
   return (
     <div className="flex gap-4 mt-4">
-      {types.map((type, i) => {
+      {types.map((type) => {
         return (
           <button
-            key={i}
+            key={type}
             className={cn(
               "cursor-pointer hover:scale-110 transition-transform"
             )}
