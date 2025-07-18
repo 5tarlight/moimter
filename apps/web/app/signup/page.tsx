@@ -16,7 +16,10 @@ export default function SignUp() {
       <AuthTitle>환영합니다!</AuthTitle>
       <AuthDescription>나만의 특별한 공간을 만들어보세요</AuthDescription>
 
-      <AuthForm onSubmit={handleSignUp}></AuthForm>
+      <AuthForm onSubmit={handleSignUp}>
+        <AuthTitle>회원가입</AuthTitle>
+        <AuthDescription>Moimter 계정을 생성합니다.</AuthDescription>
+      </AuthForm>
     </AuthContainer>
   );
 }
