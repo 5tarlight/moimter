@@ -148,6 +148,8 @@ export default function SignUp() {
 
     clearErrors();
     const ok = validateForm();
+
+    if (!ok) return;
   };
 
   return (
