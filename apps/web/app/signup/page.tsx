@@ -13,7 +13,12 @@ import { CiAt, CiLock, CiMail, CiUser } from "react-icons/ci";
 import AgreementItem from "../../components/auth/agree-field";
 import Link from "next/link";
 import AuthSubmit from "../../components/auth/submit-btn";
-import { validateEmail } from "@repo/dto/validator";
+import {
+  validateEmail,
+  validateIdentifier,
+  validatePassword,
+  validateUsername,
+} from "@repo/dto/validator";
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
@@ -64,6 +69,75 @@ export default function SignUp() {
 
         ok = false;
       }
+    }
+
+    if (!password) {
+      setPasswordError("비밀번호를 입력해주세요.");
+      ok = false;
+    } else {
+      const passwordValid = validatePassword(password);
+
+      if (!passwordValid.valid) {
+        if (passwordValid.error == "too short") {
+          setPasswordError("비밀번호는 8자 이상이어야 합니다.");
+        } else if (passwordValid.error == "weak") {
+          setPasswordError("대소문자, 숫자, 특수문자를 포함해야 합니다.");
+        } else if (passwordValid.error == "too long") {
+          setPasswordError("비밀번호가 너무 깁니다.");
+        }
+
+        ok = false;
+      }
+    }
+
+    if (confirmPassword !== password) {
+      setConfirmPasswordError("비밀번호가 일치하지 않습니다.");
+      ok = false;
+    }
+
+    if (!identifier) {
+      setIdentifierError("아이디를 입력해주세요.");
+      ok = false;
+    } else {
+      const identifierValid = validateIdentifier(identifier);
+      if (!identifierValid.valid) {
+        if (identifierValid.error == "wrong-format") {
+          setIdentifierError("영문, 숫자, 밑줄만 사용할 수 있습니다.");
+        } else if (identifierValid.error == "too short") {
+          setIdentifierError("아이디는 3자 이상이어야 합니다.");
+        } else if (identifierValid.error == "too long") {
+          setIdentifierError("아이디는 20자 이하이어야 합니다.");
+        }
+
+        ok = false;
+      }
+    }
+
+    if (!username) {
+      setUsernameError("닉네임을 입력해주세요.");
+      ok = false;
+    } else {
+      const usernameValid = validateUsername(username);
+
+      if (!usernameValid.valid) {
+        if (usernameValid.error == "too short") {
+          setUsernameError("닉네임은 2자 이상이어야 합니다.");
+        } else if (usernameValid.error == "too long") {
+          setUsernameError("닉네임은 20자 이하이어야 합니다.");
+        }
+
+        ok = false;
+      }
+    }
+
+    if (!agreeTerms) {
+      setAgreeTermsError(true);
+      ok = false;
+    }
+
+    if (!agreePrivacy) {
+      setAgreePrivacyError(true);
+      ok = false;
     }
 
     return ok;
