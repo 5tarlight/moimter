@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/entity/user.entity';
 import { Repository } from 'typeorm';
+import { SignUpDto } from '@repo/dto/auth';
 
 @Injectable()
 export class UserService {
@@ -20,5 +21,14 @@ export class UserService {
 
   async findOneWithEmail(email: string): Promise<User | null> {
     return this.userRepository.findOneBy({ email });
+  }
+
+  async createUser(userDto: SignUpDto) {
+    const { email, password, username, identifier, oauthType } = userDto;
+
+    const emailExists = await this.findOneWithEmail(email);
+    if (emailExists) {
+      throw new Error('Email already exists');
+    }
   }
 }

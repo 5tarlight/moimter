@@ -9,11 +9,18 @@
     "lib": ["es2022", "DOM", "DOM.Iterable"],
     "module": "NodeNext",
     "moduleDetection": "force",
-    "moduleResolution": "NodeNext",
     "noUncheckedIndexedAccess": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "ES2022"
+    "target": "ES2022",
+    "baseUrl": ".",
+    "paths": {
+      "@repo/*": ["packages/*/src"],
+      "@repo/dto": ["packages/dto/src"],
+      "@repo/ui": ["packages/ui/src"],
+      "@repo/typescript-config": ["packages/typescript-config/src"],
+      "@repo/eslint-config": ["packages/eslint-config/src"]
+    }
   }
 }
