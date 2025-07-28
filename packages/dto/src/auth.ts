@@ -7,3 +7,8 @@ export interface SignUpDto {
   identifier: string;
   oauthType?: OAuthType;
 }
+
+export interface SignInDto {
+  email: string;
+  password: string;
+}
