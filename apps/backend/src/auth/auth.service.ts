@@ -1,6 +1,11 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { SignUpDto } from '@repo/dto/auth';
+import { hash } from 'bcrypt';
 import { User } from 'src/entity/user.entity';
 import { UserService } from 'src/user/user.service';
 
@@ -27,9 +32,17 @@ export class AuthService {
     };
   }
 
-  async signUp(dto: SignUpDto): Promise<User> {
-    const { email, username, identifier, password, oauthType } = dto;
+  async hashPassword(password: string): Promise<string> {
+    return await hash(password, 10);
+  }
 
-    if (await this.userService.)
+  async signUp(dto: SignUpDto): Promise<User> {
+    const { password } = dto;
+    const hashed = await this.hashPassword(password);
+
+    return await this.userService.saveUser({
+      ...dto,
+      password: hashed,
+    });
   }
 }

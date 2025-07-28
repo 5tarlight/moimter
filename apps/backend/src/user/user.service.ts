@@ -23,12 +23,12 @@ export class UserService {
     return this.userRepository.findOneBy({ email });
   }
 
-  async createUser(userDto: SignUpDto) {
-    const { email, password, username, identifier, oauthType } = userDto;
+  async findOneWithIdentifier(identifier: string): Promise<User | null> {
+    return this.userRepository.findOneBy({ identifier });
+  }
 
-    const emailExists = await this.findOneWithEmail(email);
-    if (emailExists) {
-      throw new Error('Email already exists');
-    }
+  async saveUser(dto: SignUpDto): Promise<User> {
+    const user = this.userRepository.create(dto);
+    return this.userRepository.save(user);
   }
 }
