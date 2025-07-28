@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import Link from "next/link";
 import AuthContainer from "../../components/auth/auth-container";
 import AuthGoToHome from "../../components/auth/go-to-home";
@@ -19,7 +19,45 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-  const handleLogin = () => {};
+  const clearErrors = () => {
+    setEmailError("");
+    setPasswordError("");
+  };
+
+  const validateForm = (): boolean => {
+    let ok = true;
+
+    if (!email) {
+      setEmailError("이메일을 입력해주세요.");
+      ok = false;
+    } else {
+      if (email.length > 254) {
+        setEmailError("이메일이 너무 깁니다.");
+        ok = false;
+      }
+    }
+
+    if (!password) {
+      setPasswordError("비밀번호를 입력해주세요.");
+      ok = false;
+    } else {
+      if (password.length > 72) {
+        setPasswordError("비밀번호가 너무 깁니다.");
+        ok = false;
+      }
+    }
+
+    return ok;
+  };
+
+  const handleLogin = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    clearErrors();
+    const ok = validateForm();
+
+    if (!ok) return;
+  };
 
   return (
     <AuthContainer>

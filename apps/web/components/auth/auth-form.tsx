@@ -10,10 +10,7 @@ export default function AuthForm({
 }) {
   return (
     <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        onSubmit(e);
-      }}
+      onSubmit={onSubmit}
       className={cn(
         "bg-white p-6 rounded-md shadow-lg mt-8 flex flex-col",
         "items-center max-w-96 w-full mb-32"
