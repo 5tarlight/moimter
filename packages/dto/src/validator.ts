@@ -47,7 +47,7 @@ export const validatePassword = (
   };
 };
 
-export const identifierRegex = /^[a-zA-Z0-9_]{3,20}$/;
+export const identifierRegex = /^[a-z0-9_]{3,20}$/;
 export type IdentifierError =
   | "wrong-format"
   | "too short"

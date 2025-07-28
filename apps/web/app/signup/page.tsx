@@ -102,7 +102,7 @@ export default function SignUp() {
       const identifierValid = validateIdentifier(identifier);
       if (!identifierValid.valid) {
         if (identifierValid.error == "wrong-format") {
-          setIdentifierError("영문, 숫자, 밑줄만 사용할 수 있습니다.");
+          setIdentifierError("소문자, 숫자, 밑줄만 사용할 수 있습니다.");
         } else if (identifierValid.error == "too short") {
           setIdentifierError("아이디는 3자 이상이어야 합니다.");
         } else if (identifierValid.error == "too long") {
@@ -150,6 +150,20 @@ export default function SignUp() {
     const ok = validateForm();
 
     if (!ok) return;
+
+    fetch("http://localhost:8080/auth/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+        confirmPassword,
+        identifier,
+        username,
+      }),
+    });
   };
 
   return (
